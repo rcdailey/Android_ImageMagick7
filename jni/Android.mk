@@ -1,9 +1,9 @@
+LOCAL_PATH := $(call my-dir)
+
 IMAGE_MAGICK		:= ImageMagick-7.0.5-2/
 JPEG_SRC_PATH 		:= jpeg-9b/
 PNG_SRC_PATH 		:= libpng-1.5.28/
 TIFF_SRC_PATH 		:= tiff-3.9.7/libtiff/
-
-LOCAL_PATH := $(call my-dir)
 
 #libjpeg +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 include $(CLEAR_VARS)
@@ -12,7 +12,7 @@ LOCAL_MODULE := libjpeg
 LOCAL_MODULE_FILENAME := libjpegobj
 
 LOCAL_C_INCLUDES  :=  \
-	${JPEG_SRC_PATH} 
+	$(LOCAL_PATH)/$(JPEG_SRC_PATH)
 
 LOCAL_SRC_FILES := \
 	${JPEG_SRC_PATH}jcapimin.c \
@@ -71,8 +71,8 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := libtiff
 LOCAL_MODULE_FILENAME := libtiffobj
 LOCAL_C_INCLUDES  :=  \
-	${TIFF_SRC_PATH} \
-	${JPEG_SRC_PATH} 
+	$(LOCAL_PATH)/$(TIFF_SRC_PATH) \
+	$(LOCAL_PATH)/$(JPEG_SRC_PATH)
 
 LOCAL_SRC_FILES := \
 	${TIFF_SRC_PATH}mkg3states.c \
@@ -125,7 +125,7 @@ LOCAL_MODULE    := libpng
 LOCAL_MODULE_FILENAME := libpngobj
 
 LOCAL_C_INCLUDES  :=  \
-	${PNG_SRC_PATH} \
+	$(LOCAL_PATH)/$(PNG_SRC_PATH)
 		
 LOCAL_SRC_FILES := \
 	${PNG_SRC_PATH}pngerror.c \
@@ -152,14 +152,14 @@ include $(BUILD_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE    := MagickCore-7
-LOCAL_CFLAGS += -fopenmp
-LOCAL_LDFLAGS += -fopenmp
+#LOCAL_CFLAGS += -fopenmp
+#LOCAL_LDFLAGS += -fopenmp
 LOCAL_C_INCLUDES  :=  \
-	$(IMAGE_MAGICK) \
-	$(IMAGE_MAGICK)MagickCore \
-	${PNG_SRC_PATH} \
-	${JPEG_SRC_PATH} \
-	${TIFF_SRC_PATH}
+	$(LOCAL_PATH)/$(IMAGE_MAGICK) \
+	$(LOCAL_PATH)/$(IMAGE_MAGICK)MagickCore \
+	$(LOCAL_PATH)/$(PNG_SRC_PATH) \
+	$(LOCAL_PATH)/$(JPEG_SRC_PATH) \
+	$(LOCAL_PATH)/$(TIFF_SRC_PATH)
 
 
 LOCAL_LDLIBS    := -L$(SYSROOT)/usr/lib -llog -lz
@@ -400,11 +400,11 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := MagickWand-7
 
 LOCAL_C_INCLUDES  :=  \
-	$(IMAGE_MAGICK) \
-	$(IMAGE_MAGICK)MagickCore \
-	$(IMAGE_MAGICK)MagickWand \
-	${PNG_SRC_PATH} \
-	${JPEG_SRC_PATH} \
+	$(LOCAL_PATH)/$(IMAGE_MAGICK) \
+	$(LOCAL_PATH)/$(IMAGE_MAGICK)MagickCore \
+	$(LOCAL_PATH)/$(IMAGE_MAGICK)MagickWand \
+	$(LOCAL_PATH)/$(PNG_SRC_PATH) \
+	$(LOCAL_PATH)/$(JPEG_SRC_PATH)
 
 
 LOCAL_LDLIBS    := -L$(SYSROOT)/usr/lib -llog -lz
@@ -451,12 +451,12 @@ LOCAL_CFLAGS += -fexceptions
 LOCAL_LDFLAGS += -fexceptions
 
 LOCAL_C_INCLUDES  :=  \
-	$(IMAGE_MAGICK) \
-	$(IMAGE_MAGICK)MagickCore \
-	$(IMAGE_MAGICK)MagickWand \
-	$(IMAGE_MAGICK)Magick++/lib \
-	${PNG_SRC_PATH} \
-	${JPEG_SRC_PATH} \
+	$(LOCAL_PATH)/$(IMAGE_MAGICK) \
+	$(LOCAL_PATH)/$(IMAGE_MAGICK)MagickCore \
+	$(LOCAL_PATH)/$(IMAGE_MAGICK)MagickWand \
+	$(LOCAL_PATH)/$(IMAGE_MAGICK)Magick++/lib \
+	$(LOCAL_PATH)/$(PNG_SRC_PATH) \
+	$(LOCAL_PATH)/$(JPEG_SRC_PATH)
 
 
 LOCAL_LDLIBS    := -L$(SYSROOT)/usr/lib -llog -lz
