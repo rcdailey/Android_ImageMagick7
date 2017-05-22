@@ -1,2 +1,5 @@
-obj
-release
+*.so
+*.o
+*.o.d
+*.o-*
+*.a
